@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Website Portfolio</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<!-- font awesome -->
+		<link rel="stylesheet" href="css/all.min.css" />
+		<!-- google font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- rel icon -->
+		<link rel="icon" href="assets/img/logo.png" />
+	</head>
+	<body>
+		<nav>
+			<div class="wrapper main-container">
+				<div class="logo">
+					<h2>PAD</h2>
+				</div>
+				<div class="menu-nav">
+					<ul>
+						<li class="links"><a href="#">Home</a></li>
+						<li class="links"><a href="#profile">Profile</a></li>
+						<li class="links"><a href="#portfolio">Portfolio</a></li>
+						<li class="links"><a href="#message">Message Us</a></li>
+						<li class="toggle-menu-icon">
+							<i class="fa-solid fa-bars"></i>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<header id="header">
+			<div class="banner-text">
+				<h1>Hi <span id="user">Bro</span>, welcome to my website</h1>
+				<p>Kenalin aku Agas, ini adalah tugas akhir fundamental course</p>
+			</div>
+
+			<!-- control slider -->
+			<div class="banner-control">
+				<div class="main-container container-control">
+					<div class="prev box-control" onclick="previousSlide()">
+						<i class="fa fa-angle-left"></i>
+					</div>
+					<div class="prev box-control" onclick="nextSlide()">
+						<i class="fa fa-angle-right"></i>
+					</div>
+				</div>
+			</div>
+
+			<!-- slider indicator -->
+			<!-- sementara manual, seharusnya elementnya di looping -->
+			<div class="control-indicators">
+				<div class="wrapper-indicators">
+					<div class="bullet-control" onclick="showSliderByIndex(0)"></div>
+					<div class="bullet-control" onclick="showSliderByIndex(1)"></div>
+					<div class="bullet-control" onclick="showSliderByIndex(2)"></div>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<section id="profile" style="margin-bottom: 40px">
+				<div class="wrapper-profile">
+					<div class="img-profile">
+						<div class="box-img">
+							<img src="assets/img/profile.png" alt="" />
+						</div>
+					</div>
+					<div class="text-profile">
+						<h2 class="heading">Profile</h2>
+						<p>
+							Halo <span id="userIntro">Bro</span>! saya Putu Agas Darmawa
+							seorang pelajar yang sedang belajar menjadi Web Designer dan
+							kebetulan saya suka tontonan balap mobil dan motor. Jika kalian
+							ingin kenalan, masukkan nama kamu supaya kita bisa kenal satu sama
+							lain.
+						</p>
+						<div class="profile-buttons">
+							<button class="add-name" id="addName" onclick="addName()">
+								Tambah Nama
+							</button>
+							<button class="edit-name" id="editName" onclick="editName()">
+								Ubah Nama
+							</button>
+							<button
+								class="remove-name"
+								id="removeName"
+								onclick="removeName()"
+							>
+								Hapus Nama
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section
+				id="portfolio"
+				class="wrapper-portfolio"
+				style="margin-bottom: 50px"
+			>
+				<h2 class="heading">Portfolio</h2>
+				<div class="wrp-content">
+					<div class="box-portfolio">
+						<div class="port-img">
+							<img src="assets/img/motogp.jpg" alt="" />
+						</div>
+						<div class="port-text">
+							<h4>MotoGP</h4>
+							<p>Saya membuat website cloning tampilan hasil balapan MotoGP</p>
+						</div>
+					</div>
+					<div class="box-portfolio">
+						<div class="port-img">
+							<img src="assets/img/f1_usa.jpg" alt="" />
+						</div>
+						<div class="port-text">
+							<h4>Formula 1</h4>
+							<p>
+								Saya membuat website cloning tampilan hasil balapan Formula 1
+							</p>
+						</div>
+					</div>
+					<div class="box-portfolio">
+						<div class="port-img">
+							<img src="assets/img/lewis.png" alt="" />
+						</div>
+						<div class="port-text">
+							<h4>Spotify</h4>
+							<p>Saya membuat website cloning tampilan UI playlist Spotify</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section style="margin-bottom: 60px">
+				<h2 class="heading">Message Us</h2>
+				<div class="wrapper-forms">
+					<div class="input-forms-content">
+						<form name="message" onsubmit="return validateForm(event)">
+							<div class="box-input">
+								<label for="name" class="label-input">Nama</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									placeholder="Masukkan nama"
+								/>
+								<div class="error-message" id="nameError">
+									<p>Nama harus diisi!</p>
+								</div>
+							</div>
+							<div class="box-input">
+								<label for="dob" class="label-input">Tanggal Lahir</label>
+								<input
+									type="date"
+									id="dob"
+									name="dob"
+									placeholder="Masukkan nama"
+								/>
+								<div class="error-message" id="dobError">
+									<p>Tanggal Lahir harus diisi!</p>
+								</div>
+							</div>
+							<div class="box-input">
+								<label class="label-input">Jenis Kelamin</label>
+								<div class="wrapper-gender">
+									<div class="gender" style="margin-right: 20px">
+										<input
+											type="radio"
+											value="Laki-Laki"
+											name="gender"
+											id="male"
+										/>
+										<label for="male">Laki-Laki</label>
+									</div>
+									<div class="gender">
+										<input
+											type="radio"
+											value="Perempuan"
+											name="gender"
+											id="female"
+										/>
+										<label for="female">Perempuan</label>
+									</div>
+								</div>
+								<div class="error-message" id="genderError">
+									<p>Jenis kelamin harus dipilih!</p>
+								</div>
+							</div>
+							<div class="box-input">
+								<label for="message" class="label-input">Pesan</label>
+								<textarea
+									name="message"
+									id="message"
+									style="resize: none"
+									rows="4"
+									placeholder="Masukkan pesan"
+								></textarea>
+								<div class="error-message" id="messageError">
+									<p>Pesan harus diisi!</p>
+								</div>
+								<!-- class="input-invalid" -->
+							</div>
+
+							<button type="submit">Kirim</button>
+						</form>
+					</div>
+					<div class="form-results">
+						<h2>hahaha</h2>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- <i class="fa-solid fa-house"></i> -->
+
+		<footer>
+			<p>
+				&copy;Copyright <span id="year">2024</span> |
+				<span style="color: #378bd1; font-weight: 700">PAD</span>
+			</p>
+			<ul>
+				<li>
+					<a href=""><i class="fab fa-instagram"></i></a>
+				</li>
+				<li>
+					<a href=""><i class="fab fa-whatsapp"></i></a>
+				</li>
+				<li>
+					<a href=""><i class="fab fa-linkedin"></i></a>
+				</li>
+				<li>
+					<a href=""><i class="fab fa-dribbble"></i></a>
+				</li>
+			</ul>
+		</footer>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>

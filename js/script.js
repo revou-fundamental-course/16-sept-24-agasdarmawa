@@ -1,4 +1,8 @@
 let slideIndex = 0;
+
+// toggle menu nav
+let isNavToggled = false;
+
 // list img untuk slider
 const listImages = ["f1_usa.jpg", "motogp.jpg", "wsbk.jpg"];
 
@@ -8,7 +12,6 @@ function nextSlide() {
 	// cek jika slideIndex lebih dari listImages.length
 	slideIndex = slideIndex > listImages.length - 1 ? 0 : slideIndex;
 	showImageSlider(slideIndex);
-	console.log(slideIndex);
 }
 
 function previousSlide() {
@@ -17,7 +20,6 @@ function previousSlide() {
 	// cek jika slideIndex < 0
 	slideIndex = slideIndex < 0 ? listImages.length - 1 : slideIndex;
 	showImageSlider(slideIndex);
-	console.log(slideIndex);
 }
 
 function showImageSlider(index) {
@@ -42,6 +44,28 @@ function sliderBulletControl(index) {
 
 	// set indicator active (.bullet-control) sesuai index
 	document.querySelectorAll(".bullet-control")[index].classList.add("active");
+}
+
+function toggleNavMenu() {
+	// ubah nilai dari false ke true dan sebaliknya
+	isNavToggled = !isNavToggled;
+
+	// jika icon bars di klik
+	if (isNavToggled) {
+		// ubah icon nav
+		document
+			.getElementById("iconNavToggle")
+			.classList.replace("fa-bars", "fa-times");
+		// tampilkan menu mobile
+		document.querySelector(".mobile-nav").style.display = "block";
+	} else {
+		// ubah icon nav
+		document
+			.getElementById("iconNavToggle")
+			.classList.replace("fa-times", "fa-bars");
+		// tampilkan menu mobile
+		document.querySelector(".mobile-nav").style.display = "none";
+	}
 }
 
 function validateForm(e) {
@@ -101,7 +125,8 @@ function validateForm(e) {
 function addName() {
 	const promptName = prompt("Halo, nama kamu siapa?");
 	const name = promptName || "Bro";
-	// console.log(name);
+	if (promptName === null) return;
+
 	localStorage.setItem("userWelcomeName", name);
 	removeAddNameButton();
 	document.getElementById("editName").style.display = "block";
@@ -111,6 +136,7 @@ function addName() {
 
 function editName() {
 	const promptName = prompt("Halo, nama kamu siapa?");
+	if (promptName === null) return;
 
 	// jika prompt kosong maka name adalah userWelcomeName pada localStorage
 	// jika prompt terisi maka name adalah inputan pada prompt
@@ -157,5 +183,7 @@ function removeAddNameButton() {
 	document.getElementById("addName").style.display = "none";
 }
 
+// init function ketika web dibuka
 setDefaultWelcomeName();
 showImageSlider(slideIndex);
+setInterval(() => nextSlide(), 2000);

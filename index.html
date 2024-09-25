@@ -29,18 +29,31 @@
 						<li class="links"><a href="#profile">Profile</a></li>
 						<li class="links"><a href="#portfolio">Portfolio</a></li>
 						<li class="links"><a href="#message">Message Us</a></li>
-						<li class="toggle-menu-icon">
-							<i class="fa-solid fa-bars"></i>
+						<li class="toggle-menu-icon" onclick="toggleNavMenu()">
+							<i class="fa-solid fa-bars" id="iconNavToggle"></i>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
+		<!-- RESPONSIVE MENU ONLY -->
+		<div class="mobile-nav">
+			<div class="main-container">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#profile">Profile</a></li>
+					<li><a href="#portfolio">Portfolio</a></li>
+					<li><a href="#message">Message Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- RESPONSIVE MENU ONLY -->
+
 		<header id="header">
 			<div class="banner-text">
 				<h1>Hi <span id="user">Bro</span>, welcome to my website</h1>
-				<p>Kenalin aku Agas, ini adalah tugas akhir fundamental course</p>
+				<p>Halo saya Agas, ini adalah tugas akhir fundamental course</p>
 			</div>
 
 			<!-- control slider -->
@@ -131,7 +144,7 @@
 					</div>
 					<div class="box-portfolio">
 						<div class="port-img">
-							<img src="assets/img/lewis.png" alt="" />
+							<img src="assets/img/spotify.jpg" alt="" />
 						</div>
 						<div class="port-text">
 							<h4>Spotify</h4>
@@ -239,7 +252,7 @@
 					<a href=""><i class="fab fa-linkedin"></i></a>
 				</li>
 				<li>
-					<a href=""><i class="fab fa-dribbble"></i></a>
+					<a href=""><i class="fa-solid fa-envelope"></i></a>
 				</li>
 			</ul>
 		</footer>

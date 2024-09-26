@@ -6,6 +6,8 @@ let isNavToggled = false;
 // list img untuk slider
 const listImages = ["f1_usa.jpg", "motogp.jpg", "wsbk.jpg"];
 
+const formNames = ["name", "dob", "gender", "message"];
+
 function nextSlide() {
 	slideIndex++;
 
@@ -69,11 +71,10 @@ function toggleNavMenu() {
 }
 
 function validateForm(e) {
+	let isFormValid = false;
 	e.preventDefault();
-	console.log(e);
-
+	// console.log(e);
 	const forms = document.forms["message"];
-	const formNames = ["name", "dob", "gender", "message"];
 
 	const name = forms["name"].value;
 	const dob = forms["dob"].value;
@@ -88,11 +89,6 @@ function validateForm(e) {
 			break;
 		}
 	}
-
-	// console.log("name: ", name);
-	// console.log("dob: ", dob);
-	// console.log("gender: ", gender);
-	// console.log("message: ", message);
 
 	formNames.forEach((form) => {
 		if (form === "gender") {
@@ -118,6 +114,32 @@ function validateForm(e) {
 			}
 		}
 	});
+	// console.log(isFormValid);
+
+	// cek jika semua data terisi
+	if (name && dob && gender && message) {
+		isFormValid = true;
+		// console.log(isFormValid);
+		displayFormResult(formNames, [name, dob, gender, message]);
+		// tampilkan button reset
+		document.getElementById("btnFormResults").style.display = "block";
+		document.getElementById("btnFormSubmit").style.display = "none";
+
+		// reset nilai form pada input
+		formNames.forEach((form) => {
+			const input = forms[form];
+			// jika type input adalah radio
+			if (input instanceof RadioNodeList) {
+				// loop input radio genders
+				for (const gender of input) {
+					gender.checked = false;
+				}
+			} else {
+				// semua input kecuali input radio
+				input.value = "";
+			}
+		});
+	}
 
 	return false;
 }
@@ -125,6 +147,7 @@ function validateForm(e) {
 function addName() {
 	const promptName = prompt("Halo, nama kamu siapa?");
 	const name = promptName || "Bro";
+	// jika promptName === null maka nama tidak akan terupdate
 	if (promptName === null) return;
 
 	localStorage.setItem("userWelcomeName", name);
@@ -136,6 +159,7 @@ function addName() {
 
 function editName() {
 	const promptName = prompt("Halo, nama kamu siapa?");
+	// jika promptName === null maka nama tidak akan terupdate
 	if (promptName === null) return;
 
 	// jika prompt kosong maka name adalah userWelcomeName pada localStorage
@@ -183,7 +207,60 @@ function removeAddNameButton() {
 	document.getElementById("addName").style.display = "none";
 }
 
+function refreshTime() {
+	const date = new Date();
+	const options = {
+		timeZone: "Asia/Kuala_Lumpur", // timezone WITA (GMT +8)
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+		hour12: false, // 24-hour format
+	};
+
+	const formattedString = new Intl.DateTimeFormat("en-US", options).format(
+		date,
+	);
+	const [datePart, timePart] = formattedString.split(", ");
+	const [month, day, year] = datePart.split("/");
+	const formattedDate = `${day}/${month}/${year} - ${timePart}`;
+
+	document.getElementById("clockTime").textContent = formattedDate;
+}
+
+function displayFormResult(formNames = [], formResults = []) {
+	// cek jika formNames atau formResults kosong
+	if (!formNames.length || !formResults.length) return;
+	formNames.forEach((name, index) => {
+		// state awal jika form belum diisi
+		let defaultText =
+			name === "message" ? "Belum ada informasi yang dikirim" : "-";
+		const idOutput = name + "Output";
+
+		document.getElementById(idOutput).textContent =
+			formResults[index] || defaultText;
+	});
+}
+
+function resetFormResults() {
+	// btnFormResults
+	formNames.forEach((name) => {
+		// state awal jika form belum diisi
+		let defaultText =
+			name === "message" ? "Belum ada informasi yang dikirim" : "-";
+		const idOutput = name + "Output";
+
+		document.getElementById(idOutput).textContent = defaultText;
+	});
+	document.forms["message"]["name"].focus();
+	document.getElementById("btnFormResults").style.display = "none";
+	document.getElementById("btnFormSubmit").style.display = "block";
+}
+
 // init function ketika web dibuka
+setInterval(refreshTime, 1000);
 setDefaultWelcomeName();
 showImageSlider(slideIndex);
 setInterval(() => nextSlide(), 2000);

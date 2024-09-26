@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Website Portfolio</title>
+		<title>PAD | Website Portfolio</title>
 		<link rel="stylesheet" href="css/style.css" />
 		<!-- font awesome -->
 		<link rel="stylesheet" href="css/all.min.css" />
@@ -21,6 +21,7 @@
 		<nav>
 			<div class="wrapper main-container">
 				<div class="logo">
+					<img src="assets/img/logo.png" alt="" />
 					<h2>PAD</h2>
 				</div>
 				<div class="menu-nav">
@@ -224,11 +225,50 @@
 								<!-- class="input-invalid" -->
 							</div>
 
-							<button type="submit">Kirim</button>
+							<button type="submit" id="btnFormSubmit">Kirim</button>
 						</form>
 					</div>
 					<div class="form-results">
-						<h2>hahaha</h2>
+						<div class="world-clock">
+							<i class="fa fa-clock"></i>
+							<span id="clockTime">-</span>
+						</div>
+						<h4>Hasil Input Form</h4>
+						<div class="list-form default-form">
+							<div class="description">
+								<i class="fa fa-user"></i>
+								<h6>Nama</h6>
+							</div>
+							<span id="nameOutput">-</span>
+						</div>
+						<div class="list-form default-form">
+							<div class="description">
+								<i class="fa fa-calendar-day"></i>
+								<h6>Tanggal Lahir</h6>
+							</div>
+							<span id="dobOutput">-</span>
+						</div>
+						<div class="list-form default-form">
+							<div class="description">
+								<i class="fa fa-male" style="font-size: 1.2em"></i>
+								<h6>Jenis Kelamin</h6>
+							</div>
+							<span id="genderOutput">-</span>
+						</div>
+						<div class="list-form info-message">
+							<div class="description">
+								<i style="font-size: 0.8em" class="fa fa-message"></i>
+								<h6>Pesan</h6>
+							</div>
+							<span id="messageOutput">Belum ada informasi yang dikirim</span>
+						</div>
+						<button
+							class="reset"
+							id="btnFormResults"
+							onclick="resetFormResults()"
+						>
+							Reset Data
+						</button>
 					</div>
 				</div>
 			</section>
